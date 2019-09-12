@@ -31,7 +31,7 @@ class Animation extends React.Component {
             return true;
         }
         return false;
-    }
+    };
 
     computerWins = (userChoice, computerChoice) => {
         if ((userChoice == "rock" && computerChoice == "paper") ||
@@ -40,7 +40,7 @@ class Animation extends React.Component {
             return true;
         }
         return false;
-    }
+    };
 
     decideResult = () => {
         if (this.userWins(this.props.userChoice, this.props.computerChoice)) {
@@ -50,7 +50,17 @@ class Animation extends React.Component {
         } else {
             this.state.tie = true;
         }
-    }
+    };
+
+    givePoint = (userWins, computerWins, tie) => {
+        if (userWins) {
+            this.props.incUserScore();
+            return;
+        } else if (computerWins) {
+            this.props.incComputerScore();
+            return;
+        }
+    };
 
     render() {
         const { showWhiteSpace, count, userWins, computerWins, tie } = this.state;
@@ -81,7 +91,6 @@ class Animation extends React.Component {
                         </div>
                     </span>
                 :
-                    <span>
                     <Results 
                         userChoice = {this.props.userChoice}
                         computerChoice = {this.props.computerChoice}
@@ -90,8 +99,10 @@ class Animation extends React.Component {
                         tie = {tie}
                         playAgainClick = {this.props.playAgainClick}
                         restartClick = {this.props.restartClick}
+                        incUserScore = {this.props.incUserScore}
+                        incComputerScore = {this.props.incComputerScore}
+                        gameComplete = {false}
                     />
-                    </span>
                 }
             </Container>
         )

@@ -22,7 +22,8 @@ class App extends React.Component {
     userHasChosen: false,
     userChoice: null,
     userScore: 0,
-    computerScore: 0
+    computerScore: 0,
+    gameComplete: false
   };
 
   handleClick = (id) => {
@@ -49,28 +50,41 @@ class App extends React.Component {
     };
   };
 
-  playAgainClick = () => {
+  playAgainClick = (userWins, computerWins) => {
     this.setState({
       userHasChosen: false,
-      userChoice: null
+      userChoice: null,
+      gameComplete: false
     })
+    if (userWins) {
+      this.setState({ userScore: this.state.userScore+1 })
+    } else if (computerWins) {
+      this.setState({ computerScore: this.state.computerScore+1 })
+    }
   };
 
   restartClick = () => {
     this.setState({
       userHasChosen: false,
       userChoice: null,
-      nrUserWins: 0,
-      nrComputerWins: 0
+      userScore: 0,
+      computerScore: 0,
+      gameComplete: false
     })
   };
 
   incUserScore = () => {
-    this.setState({ userScore: this.state.userScore+1 });
+    this.setState({ 
+      userScore: this.state.userScore+1,
+      gameComplete: true
+    });
   }
 
   incComputerScore = () => {
-    this.setState({ computerScore: this.state.computerScore+1 });
+    this.setState({ 
+      computerScore: this.state.computerScore+1,
+      gameComplete: true
+    });
   }
 
   render() {
@@ -98,6 +112,7 @@ class App extends React.Component {
               restartClick = {this.restartClick}
               incUserScore = {this.incUserScore}
               incComputerScore = {this.incComputerScore}
+              gameComplete = {this.gameComplete}
             />
         }
       </Container>

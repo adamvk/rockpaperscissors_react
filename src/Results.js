@@ -2,13 +2,27 @@ import React from "react";
 import { Container, Header, Button } from "semantic-ui-react";
 
 class Results extends React.Component {
+    state = {
+        scoreGiven: false
+    };
 
+    incUserScore = () => {
+        if (!this.props.gameComplete && !this.state.scoreGiven) {
+            this.props.incUserScore();
+            this.setState({ scoreGiven: true });
+        };
+    };
 
-    render() {
-        const { userWins, computerWins, tie } = this.props;
+    incComputerScore = () => {
+        if (!this.props.gameComplete && !this.state.scoreGiven) {
+            this.props.incComputerScore();
+            this.setState({ scoreGiven: true });
+        };
+    };
 
-        return(
-            <Container style={{ marginTop: "0px" }}>
+    renderResults = (userWins, computerWins, tie) => (
+            <>
+            
                 <img 
                     src={require(`./assets/space.png`)}
                 />
@@ -19,6 +33,7 @@ class Results extends React.Component {
                 <img 
                     src={require(`./assets/${this.props.computerChoice}-left.png`)}
                 />
+            <span>
                 { userWins &&
                     <span>
                         <Header as="h2" color="green">
@@ -34,21 +49,35 @@ class Results extends React.Component {
                     </span>
                 }
                 { tie &&
-                    <Header as="h2" color="blue">
-                        Tie!
-                    </Header>
+                    <span>
+                        <Header as="h2" color="blue">
+                            Tie!
+                        </Header>
+                    </span>
                 }
                 <br />
                 <Button
-                    onClick={this.props.playAgainClick}
+                    onClick={() => this.props.playAgainClick(userWins, computerWins)}
                 >
                     Play again
                 </Button>
                 <Button
-                    onClick={this.props.playAgainClick}
+                    onClick={this.props.restartClick}
                 >
                     Restart
                 </Button>
+            </span>
+        </>
+    )
+
+    render() {
+        const { userWins, computerWins, tie } = this.props;
+
+        return(
+            <Container style={{ marginTop: "0px" }}>
+            { 
+                this.renderResults(userWins, computerWins, tie) 
+            }
             </Container>
         )
     }
