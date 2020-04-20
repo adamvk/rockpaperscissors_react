@@ -21,18 +21,11 @@ class Results extends React.Component {
     };
 
     renderResults = (userWins, computerWins, tie) => (
-            <>
-            
-                <img 
-                    src={require(`./assets/space.png`)}
-                />
-                <br />
-                <img 
-                    src={require(`./assets/${this.props.userChoice}.png`)}
-                />
-                <img 
-                    src={require(`./assets/${this.props.computerChoice}-left.png`)}
-                />
+        <>
+            <img src={require(`./assets/space.png`)} alt="Space" />
+            <br />
+            <img src={require(`./assets/${this.props.userChoice}.png`)} alt="User's choice" />
+            <img src={require(`./assets/${this.props.computerChoice}-left.png`)} alt="Computer's choice" />
             <span>
                 { userWins &&
                     <span>
@@ -68,19 +61,17 @@ class Results extends React.Component {
                 </Button>
             </span>
         </>
-    )
+    );
 
     render() {
         const { userWins, computerWins, tie } = this.props;
 
         return(
             <Container style={{ marginTop: "0px" }}>
-            { 
-                this.renderResults(userWins, computerWins, tie) 
-            }
+                { this.renderResults(userWins, computerWins, tie) }
             </Container>
-        )
-    }
-}
+        );
+    };
+};
 
 export default Results;

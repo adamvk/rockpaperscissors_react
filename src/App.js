@@ -41,11 +41,11 @@ class App extends React.Component {
 
   getComputerChoice = () => {
     let int = Math.floor(Math.random() * this.state.objects.length + 1);
-    if (int == 1) {
+    if (int === 1) {
       return "rock";
-    } else if (int == 2) {
+    } else if (int === 2) {
       return "paper";
-    } else if (int == 3) {
+    } else if (int === 3) {
       return "scissors";
     };
   };

@@ -25,18 +25,18 @@ class Animation extends React.Component {
     };
 
     userWins = (userChoice, computerChoice) => {
-        if ((userChoice == "rock" && computerChoice == "scissors") ||
-            (userChoice == "paper" && computerChoice == "rock") ||
-            (userChoice == "scissors" && computerChoice == "paper")) {
+        if ((userChoice === "rock" && computerChoice === "scissors") ||
+            (userChoice === "paper" && computerChoice === "rock") ||
+            (userChoice === "scissors" && computerChoice === "paper")) {
             return true;
         }
         return false;
     };
 
     computerWins = (userChoice, computerChoice) => {
-        if ((userChoice == "rock" && computerChoice == "paper") ||
-            (userChoice == "paper" && computerChoice == "scissors") ||
-            (userChoice == "scissors" && computerChoice == "rock")) {
+        if ((userChoice === "rock" && computerChoice === "paper") ||
+            (userChoice === "paper" && computerChoice === "scissors") ||
+            (userChoice === "scissors" && computerChoice === "rock")) {
             return true;
         }
         return false;
@@ -73,21 +73,13 @@ class Animation extends React.Component {
                     <span>
                         { showWhiteSpace &&
                             <div>
-                                <img 
-                                    src={require('./assets/space.png')}
-                                />
-                                <img 
-                                    src={require('./assets/space.png')}
-                                />
+                                <img src={require('./assets/space.png')} alt="Space" />
+                                <img src={require('./assets/space.png')} alt="Space" />
                             </div>
                         }
                         <div>
-                            <img 
-                                src={require('./assets/rock.png')}
-                            />
-                            <img 
-                                src={require('./assets/rock-left.png')}
-                            />
+                            <img src={require('./assets/rock.png')} alt="Rock" />
+                            <img src={require('./assets/rock-left.png')} alt="Rock" />
                         </div>
                     </span>
                 :
@@ -105,8 +97,8 @@ class Animation extends React.Component {
                     />
                 }
             </Container>
-        )
-    }
-}
+        );
+    };
+};
 
 export default Animation;
